@@ -233,24 +233,32 @@ function initCalculators() {
     const A4heightCm = 29.7;
 
     if (isNaN(value)) {
-      document.getElementById("converter-result").textContent = "Enter a valid number.";
+      document.getElementById("converter-result").textContent = "Parameter not valid";
       return;
     }
 
     let result;
+    let resultplus;
+    let nekoplus;
 
-    if (mode === "cm2px") result = (value / A4heightCm) * A4heightPx;
-    else result = (value / A4heightPx) * A4heightCm;
-
-    if (edgeComp) result *= 1.05;
-
-    document.getElementById("converter-result").textContent = result.toFixed(3);
+    if (mode === "cm2px") {
+      result = (value / A4heightCm) * A4heightPx;
+      resultplus = result * 1.05;
+      nekoplus = `Normal Size: ${result.toFixed(3)} px\n+5% Print: ${resultplus.toFixed(3)} px`
+    }
+    else {
+      result = ((value / A4heightPx) * A4heightCm) / 1.05;
+      resultplus = result * 1.05;
+      nekoplus = `Normal Size: ${result.toFixed(3)} cm\n+5% Print: ${resultplus.toFixed(3)} cm`
+    }
+    document.getElementById("converter-result").textContent = nekoplus;
   });
 
 }
 
 // Initialize calculators
 initCalculators();
+
 
 
 
