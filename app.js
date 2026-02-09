@@ -225,6 +225,18 @@ function initCalculators() {
   });
 
   // --- 3) CM ↔ PX Converter ---
+  const PIXELZ = document.getElementById("conv-mode");
+  PIXELZ.addEventListener("click",() => {
+    const pxc = PIXELZ.dataset.mode;
+    if(pxc === "cm2px") {
+      PIXELZ.dataset.mode = "px2cm";
+      PIXELZ.textContent = "PX → CM";
+    } else {
+      PIXELZ.dataset.mode = "cm2px";
+      PIXELZ.textContent = "CM → PX";
+    }
+    updateConverter();
+  });
   document.getElementById("conv-value")?.addEventListener("input", updateConverter);
   document.getElementById("conv-mode")?.addEventListener("change", updateConverter);
   
@@ -269,6 +281,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
