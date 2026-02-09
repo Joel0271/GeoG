@@ -225,7 +225,10 @@ function initCalculators() {
   });
 
   // --- 3) CM ↔ PX Converter ---
-  document.getElementById("covcalc")?.addEventListener("click", function() {
+  document.getElementById("conv-value")?.addEventListener("input", updateConverter);
+  document.getElementById("conv-mode")?.addEventListener("change", updateConverter);
+  
+  function updateConverter() {
     const value = parseFloat(document.getElementById("conv-value").value);
     const mode = document.getElementById("conv-mode")?.value;
     const edgeComp = document.getElementById("edgeComp")?.checked;
@@ -233,38 +236,40 @@ function initCalculators() {
     const A4heightCm = 29.7;
 
     if (isNaN(value)) {
-      document.getElementById("converter-result").textContent = "Parameter not valid";
+      document.getElementById("converter-result").textContent =
+        "Parameter not valid";
       return;
     }
 
-    let result;
-    let resultplus;
-    let resultone;
-    let nekoplus;
+    let result, resultone, resultplus, nekoplus;
 
     if (mode === "cm2px") {
       result = (value / A4heightCm) * A4heightPx;
       resultone = result * 1.01;
       resultplus = result * 1.05;
+
       nekoplus = `Normal Size: ${result.toFixed(3)} px
       +1% Print: ${resultone.toFixed(3)} px
-      +5% Print: ${resultplus.toFixed(3)} px`
-    }
-    else {
+      +5% Print: ${resultplus.toFixed(3)} px`;
+    } else {
       result = ((value / A4heightPx) * A4heightCm) / 1.05;
-      resultone = result * 1.05 / 1.01;
+      resultone = (result * 1.05) / 1.01;
       resultplus = result * 1.05;
+
       nekoplus = `Normal Size: ${result.toFixed(3)} cm
-      +1% Print: ${resultone.toFixed(3)} px
-      +5% Print: ${resultplus.toFixed(3)} cm`
+      +1% Print: ${resultone.toFixed(3)} cm
+      +5% Print: ${resultplus.toFixed(3)} cm`;
     }
+
     document.getElementById("converter-result").textContent = nekoplus;
-  });
+  }
+
 
 }
 
 // Initialize calculators
 initCalculators();
+
 
 
 
