@@ -238,7 +238,6 @@ function initCalculators() {
     updateConverter();
   });
   document.getElementById("conv-value")?.addEventListener("input", updateConverter);
-  document.getElementById("conv-mode")?.addEventListener("change", updateConverter);
   
   function updateConverter() {
     const value = parseFloat(document.getElementById("conv-value").value);
@@ -281,6 +280,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
