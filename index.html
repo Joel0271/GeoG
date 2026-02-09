@@ -105,16 +105,12 @@
       <!-- 3) CM ↔ PX Converter -->
       <section id="converter">
         <h3>3) CM ↔ PX Converter for A4</h3>
-        <label>
-          <input type="checkbox" id="edgeComp"> Edge-to-edge compensation (+5%)
-        </label>
         <br>
         <label>
           Mode:
-          <select id="conv-mode">
-            <option value="cm2px">CM → PX</option>
-            <option value="px2cm">PX → CM</option>
-          </select>
+          <button id="conv-mode" type="button" data-mode="cm2px">
+            CM → PX
+          </button>
         </label>
         <input type="number" id="conv-value" placeholder="Value" step="any">
         <button id="covcalc">Convert</button>
