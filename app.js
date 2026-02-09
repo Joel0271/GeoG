@@ -95,7 +95,9 @@ initDonutTool();
 // ----------------------
 // 1) Haversine Distance
 // ----------------------
-document.getElementById("coord-option")?.addEventListener("change", function() {
+
+function initcalc() {
+  document.getElementById("coord-option")?.addEventListener("change", function() {
   if (this.value === "separate") {
     document.getElementById("separate-inputs").style.display = "block";
     document.getElementById("combined-inputs").style.display = "none";
@@ -233,3 +235,7 @@ function convertUnits() {
 
   document.getElementById("converter-result").textContent = result.toFixed(3);
 }
+}
+
+initcalc();
+
