@@ -57,14 +57,43 @@ main {
   margin: 20px 0;
 }
 
-.color-inputs label {
+.color-inputs {
   display: flex;
   flex-direction: column;
+  gap: 12px; /* space between cards */
 }
 
-.color-inputs input[type="text"] {
-  margin-top: 4px;
+.color-row {
+  display: flex;
+  flex-direction: column; /* stack label, color picker, hex input vertically */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+
+.color-row label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.color-row input[type="color"] {
+  width: 100%;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+}
+
+.color-row input.hex-input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: monospace;
+}
+
 
 .donut-tool .donut-visual {
   width: 100%;
@@ -107,4 +136,5 @@ main {
   gap: 10px;
 
 }
+
 
