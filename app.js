@@ -1,3 +1,17 @@
+// tool switching
+function showTool(id) {
+  document.querySelectorAll('.tool').forEach(t =>
+    t.classList.remove('active')
+  );
+  document.getElementById(id)?.classList.add('active');
+}
+
+document.querySelectorAll('.tool-nav button').forEach(btn => {
+  btn.addEventListener('click', () => showTool(btn.dataset.tool));
+});
+
+
+
 function initDonutTool() {
   const tool = document.querySelector('#donut');
   if (!tool) return;
@@ -51,5 +65,6 @@ function initDonutTool() {
 
   renderColorInputs();
 }
+
 
 initDonutTool();
