@@ -44,7 +44,24 @@ function initDonutTool() {
       const input = document.createElement('input');
       input.type = 'color';
       input.value = existing[i] || '#33CCBB';
-      input.addEventListener('input', updateDonut);
+
+      const hexinput = document.createElement('input');
+      hexinput.type="text";
+      hexinput.value=input.value;
+      hexinput.classList.add('hex-input');
+      hexinput.maxlength=7;
+
+      input.addEventListener('input', () => {
+        hexinput.value = input.value;
+        updateDonut();
+      });
+      
+      hexinput.addEventListener('input', () => {
+        if (/^#[0-9a-fA-F]{0,6}$/.test(hexinput.value)) {
+          input.value = hexinput.value;
+          updateDonut();
+        }
+      });
 
       const label = document.createElement('label');
       label.textContent = `Color ${i + 1}: `;
@@ -68,4 +85,5 @@ function initDonutTool() {
 
 
 initDonutTool();
+
 
