@@ -100,7 +100,9 @@ main {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: conic-gradient(red, orange, yellow, red);
+  padding: 50px;
+  background: conic-gradient(#f00 0deg, #0f0 120deg, #00f 240deg, #f00 360deg);
+  background-clip: content-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,6 +139,7 @@ main {
   gap: 10px;
 
 }
+
 
 
 
