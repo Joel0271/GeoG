@@ -28,29 +28,29 @@
     <section id="donut" class="tool">
       <h2>Live Preview Donut</h2>
 
-      <div class="donut-tool">
-        <div class="donut-container">
-          <div class="donut-visual"></div>
-        </div>
+      <div id="donut-tool" style="display:flex; gap:20px; flex-wrap:wrap;">
+  
+  <!-- Left panel: color controls -->
+  <div class="color-panel" style="flex:1; min-width:200px;">
+    <label>
+      Number of Colors:
+      <button type="button" id="color-minus">−</button>
+      <span id="color-count-display">3</span>
+      <button type="button" id="color-plus">+</button>
+    </label>
+    
+    <div class="color-inputs" style="margin-top:10px; display:flex; flex-direction:column; gap:10px;">
+      <!-- Color pickers will be injected here -->
+    </div>
+  </div>
 
-        <div class="controls">
-          <label>
-            Number of Colors:
-            <button type="button" id="color-minus">−</button>
-            <span id="color-count-display">3</span>
-            <button type="button" id="color-plus">+</button>
-          </label>
+  <!-- Right panel: Donut display -->
+  <div class="donut-panel" style="flex:1; min-width:200px; display:flex; flex-direction:column; align-items:center;">
+    <div class="donut-visual" style="width:300px; height:300px; border-radius:50%; border:2px solid #ccc;"></div>
+    <button class="toggle-spin" style="margin-top:10px;">Toggle Spin</button>
+  </div>
+</div>
 
-          <div class="color-inputs">
-            <label>
-              <input type="color" value="#33CCBB">
-              <input type="text" class="hex-input" value="#33CCBB" maxlength="7">
-            </label>
-          </div>
-
-          <button class="toggle-spin">Toggle Spin</button>
-        </div>
-      </div>
     </section>
 
     <!-- TOOL ONE -->
