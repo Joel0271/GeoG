@@ -81,7 +81,7 @@
           <input type="text" id="pointA" placeholder="A: lat,lon">
           <input type="text" id="pointB" placeholder="B: lat,lon">
         </div>
-        <button onclick="calculateDistance()">Calculate Distance (km)</button>
+        <button id="distcalc">Calculate Distance (km)</button>
         <p id="distance-result"></p>
       </section>
 
@@ -96,7 +96,7 @@
         <input type="number" id="sideC" placeholder="Hypotenuse C" step="any">
         <input type="number" id="angleA" placeholder="Angle A (deg)" step="any">
         <input type="number" id="angleB" placeholder="Angle B (deg)" step="any">
-        <button onclick="calculateTriangle()">Calculate Triangle</button>
+        <button id="tricalc">Calculate Triangle</button>
         <p id="triangle-result"></p>
       </section>
 
@@ -117,7 +117,7 @@
           </select>
         </label>
         <input type="number" id="conv-value" placeholder="Value" step="any">
-        <button onclick="convertUnits()">Convert</button>
+        <button id="covcalc">Convert</button>
         <p id="converter-result"></p>
       </section>
     </section>
