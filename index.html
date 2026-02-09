@@ -1,45 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Geolocation Example</title>
-  <script>
-    function GTNya() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            document.getElementById("location").innerText = "Geolocation is not supported by this browser.";
-        }
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Tools PWA</title>
 
-    function showPosition(position) {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        document.getElementById("location").innerText = `Latitude: ${lat}, Longitude: ${lon}`;
-    }
-
-    function showError(error) {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                document.getElementById("location").innerText = "User denied the request for Geolocation.";
-                break;
-            case error.POSITION_UNAVAILABLE:
-                document.getElementById("location").innerText = "Location information is unavailable.";
-                break;
-            case error.TIMEOUT:
-                document.getElementById("location").innerText = "The request to get user location timed out.";
-                break;
-            case error.UNKNOWN_ERROR:
-                document.getElementById("location").innerText = "An unknown error occurred.";
-                break;
-        }
-    }
-  </script>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Geolocation Example</h1>
-  <button onclick="GTNya()">Get My Location</button>
-  <p id="location"></p>
+
+  <header>
+    <h1>My Tools</h1>
+    <nav class="tool-nav">
+      <button data-tool="donut">Donut color picker</button>
+      <button data-tool="tool1">Tool One</button>
+      <button data-tool="tool2">Tool Two</button>
+      <button data-tool="tool3">Tool Three</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="donut" class="tool">
+      <h2>Live Preview Donut</h2>
+
+      <div class="donut-tool">
+        <div class="donut-container">
+          <div class="donut-visual"></div>
+        </div>
+
+        <div class="controls">
+          <label>
+            Number of Colors:
+            <input type="number" class="color-count" min="2" max="10" value="3">
+          </label>
+
+          <div class="color-inputs"></div>
+
+          <button class="toggle-spin">Toggle Spin</button>
+        </div>
+      </div>
+    </section>
+    <section id="tool1" class="tool active">
+      <h2>Tool One</h2>
+      <p>Content for tool one.</p>
+    </section>
+
+    <section id="tool2" class="tool">
+      <h2>Tool Two</h2>
+      <p>Content for tool two.</p>
+    </section>
+
+    <section id="tool3" class="tool">
+      <h2>Tool Three</h2>
+      <p>Content for tool three.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
