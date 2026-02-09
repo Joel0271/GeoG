@@ -141,7 +141,7 @@ function initCalculators() {
     const aCalc = Math.sin(dLat/2)**2 +
                   Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
     const c = 2 * Math.atan2(Math.sqrt(aCalc), Math.sqrt(1 - aCalc));
-    const distance = R * c;
+    let distance = R * c;
     let UWOOGHUNITO = "???";
     if (distance < 0.01) {
       UWOOGHUNITO = "cm";
@@ -251,6 +251,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
