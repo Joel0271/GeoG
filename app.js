@@ -142,10 +142,20 @@ function initCalculators() {
                   Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
     const c = 2 * Math.atan2(Math.sqrt(aCalc), Math.sqrt(1 - aCalc));
     const distance = R * c;
+    var UWOOGHUNITO = "???";
+    if (distance < 1) {
+      UWOOGHUNITO = "m";
+      distance = distance * 1000;
+    } else if (distance < 0.01) {
+      UWOOGHUNITO = "cm";
+      distance = distance * 100000;
+    } else {
+      UWOOGHUNITO = "km";
+    }
 
     console.log("Nya!");
 
-    document.getElementById("distance-result").textContent = distance.toFixed(3) + " km";
+    document.getElementById("distance-result").textContent = distance.toFixed(3) + UWOOGHUNITO;
   });
 
   // --- 2) Right-Angled Triangle Calculator ---
@@ -241,6 +251,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
