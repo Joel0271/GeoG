@@ -70,11 +70,12 @@ main {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fafafa;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  color: #31e6f0;
 }
 
 .color-row label {
   font-weight: bold;
+  color: #ff0000;
   margin-bottom: 4px;
 }
 
@@ -136,5 +137,6 @@ main {
   gap: 10px;
 
 }
+
 
 
