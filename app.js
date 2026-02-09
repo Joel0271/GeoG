@@ -22,6 +22,7 @@ function initDonutTool() {
   if (!tool) return;
 
   let colorCount = 3;
+  
   const minColors = 2;
   const maxColors = 10;
 
@@ -302,6 +303,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
