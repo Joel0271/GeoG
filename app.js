@@ -107,7 +107,7 @@ function initCalculators() {
     });
   }
 
-  document.getElementById("distance-btn")?.addEventListener("click", function() {
+  document.getElementById("distcalc")?.addEventListener("click", function() {
     let lat1, lon1, lat2, lon2;
     const option = document.getElementById("coord-option")?.value;
 
@@ -144,7 +144,7 @@ function initCalculators() {
   });
 
   // --- 2) Right-Angled Triangle Calculator ---
-  document.getElementById("triangle-btn")?.addEventListener("click", function() {
+  document.getElementById("tricalc")?.addEventListener("click", function() {
     let a = parseFloat(document.getElementById("sideA").value);
     let b = parseFloat(document.getElementById("sideB").value);
     let c = parseFloat(document.getElementById("sideC").value);
@@ -210,7 +210,7 @@ function initCalculators() {
   });
 
   // --- 3) CM ↔ PX Converter ---
-  document.getElementById("conv-btn")?.addEventListener("click", function() {
+  document.getElementById("covcalc")?.addEventListener("click", function() {
     const value = parseFloat(document.getElementById("conv-value").value);
     const mode = document.getElementById("conv-mode")?.value;
     const edgeComp = document.getElementById("edgeComp")?.checked;
@@ -236,3 +236,4 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
