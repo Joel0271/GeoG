@@ -92,14 +92,11 @@ function initDonutTool() {
         }
       });
 
-      const wrapper = document.createElement('div');
-      wrapper.style.display = 'flex';
-      wrapper.style.flexDirection = 'column';
-      wrapper.style.gap = '4px';
-
-      const label = documnet.createElement('label');
+      const label = document.createElement('label');
       label.textContent =`Color ${i + 1};`;
 
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('color-row;);
       wrapper.appendChild(label);
       wrapper.appendChild(input);
       wrapper.appendChild(hexinput);
@@ -310,6 +307,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
