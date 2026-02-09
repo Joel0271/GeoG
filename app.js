@@ -91,7 +91,7 @@ function initDonutTool() {
       });
 
       const label = document.createElement('label');
-      label.textContent =`Color ${i + 1};`;
+      label.textContent =`Layer ${i + 1}`;
 
       const wrapper = document.createElement('div');
       wrapper.classList.add('color-row');
@@ -305,6 +305,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
