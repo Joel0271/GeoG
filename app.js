@@ -140,6 +140,8 @@ function initCalculators() {
     const c = 2 * Math.atan2(Math.sqrt(aCalc), Math.sqrt(1 - aCalc));
     const distance = R * c;
 
+    console.log("Nya!");
+
     document.getElementById("distance-result").textContent = distance.toFixed(3) + " km";
   });
 
@@ -236,4 +238,5 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
