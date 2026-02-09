@@ -8,6 +8,7 @@ function showTool(id) {
   document.getElementById(id)?.classList.add('active');
 }
 
+
 document.querySelectorAll('.tool-nav button').forEach(btn => {
   btn.addEventListener('click', () => showTool(btn.dataset.tool));
 });
@@ -238,6 +239,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
