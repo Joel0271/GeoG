@@ -241,7 +241,7 @@ function initCalculators() {
   
   function updateConverter() {
     const value = parseFloat(document.getElementById("conv-value").value);
-    const mode = document.getElementById("conv-mode")?.value;
+    const mode = document.getElementById("conv-mode")?.dataset.mode;
     const edgeComp = document.getElementById("edgeComp")?.checked;
     const A4heightPx = 3508;
     const A4heightCm = 29.7;
@@ -280,6 +280,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
