@@ -43,7 +43,7 @@ function initDonutTool() {
     for (let i = 0; i < count; i++) {
       const input = document.createElement('input');
       input.type = 'color';
-      input.value = existing[i] || '#ffffff';
+      input.value = existing[i] || '#33CCBB';
       input.addEventListener('input', updateDonut);
 
       const label = document.createElement('label');
@@ -68,3 +68,4 @@ function initDonutTool() {
 
 
 initDonutTool();
+
