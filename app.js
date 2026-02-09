@@ -49,16 +49,16 @@ function initDonutTool() {
       input.value = existing[i] || '#33CCBB';
 
       const hexinput = document.createElement('input');
-      hexinput.type="text";
-      hexinput.value=input.value;
+      hexinput.type = "text";
+      hexinput.value = input.value;
       hexinput.classList.add('hex-input');
-      hexinput.maxLength=7;
+      hexinput.maxLength = 7;
 
       input.addEventListener('input', () => {
         hexinput.value = input.value;
         updateDonut();
       });
-      
+
       hexinput.addEventListener('input', () => {
         if (/^#[0-9a-fA-F]{0,6}$/.test(hexinput.value)) {
           input.value = hexinput.value;
@@ -89,25 +89,25 @@ function initDonutTool() {
 initDonutTool();
 
 // ----------------------
-// CALCULATORS
+// CALCULATORS INIT
 // ----------------------
+function initCalculators() {
 
-// ----------------------
-// 1) Haversine Distance
-// ----------------------
+  // --- 1) Haversine Distance ---
+  const coordOption = document.getElementById("coord-option");
+  if (coordOption) {
+    coordOption.addEventListener("change", function() {
+      if (this.value === "separate") {
+        document.getElementById("separate-inputs").style.display = "block";
+        document.getElementById("combined-inputs").style.display = "none";
+      } else {
+        document.getElementById("separate-inputs").style.display = "none";
+        document.getElementById("combined-inputs").style.display = "block";
+      }
+    });
+  }
 
-function initcalc() {
-  document.getElementById("coord-option")?.addEventListener("change", function() {
-    if (this.value === "separate") {
-      document.getElementById("separate-inputs").style.display = "block";
-      document.getElementById("combined-inputs").style.display = "none";
-    } else {
-      document.getElementById("separate-inputs").style.display = "none";
-      document.getElementById("combined-inputs").style.display = "block";
-    }
-  });
-
-  function calculateDistance() {
+  document.getElementById("distance-btn")?.addEventListener("click", function() {
     let lat1, lon1, lat2, lon2;
     const option = document.getElementById("coord-option")?.value;
 
@@ -125,12 +125,12 @@ function initcalc() {
       lon1 = parseFloat(a[1]);
       lat2 = parseFloat(b[0]);
       lon2 = parseFloat(b[1]);
-     }
+    }
 
     if ([lat1, lon1, lat2, lon2].some(isNaN)) {
       document.getElementById("distance-result").textContent = "Enter valid coordinates.";
       return;
-    } 
+    }
 
     const R = 6371; // km
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -141,12 +141,10 @@ function initcalc() {
     const distance = R * c;
 
     document.getElementById("distance-result").textContent = distance.toFixed(3) + " km";
-  }
+  });
 
-  // ----------------------
-  // 2) Right-Angled Triangle Calculator
-  // ----------------------
-  function calculateTriangle() {
+  // --- 2) Right-Angled Triangle Calculator ---
+  document.getElementById("triangle-btn")?.addEventListener("click", function() {
     let a = parseFloat(document.getElementById("sideA").value);
     let b = parseFloat(document.getElementById("sideB").value);
     let c = parseFloat(document.getElementById("sideC").value);
@@ -193,28 +191,26 @@ function initcalc() {
           b = c * Math.sin(deg2rad(B));
           a = c * Math.cos(deg2rad(B));
         }
-     }
+      }
 
-     // Calculate missing angles
+      // Calculate missing angles
       if (!A && a && c) A = rad2deg(Math.asin(a / c));
       if (!B && b && c) B = rad2deg(Math.asin(b / c));
 
       if ([a,b,c,A,B].some(v => isNaN(v))) {
         result = "Insufficient or inconsistent input. Provide at least two known values.";
       } else {
-        result = `Side A: ${a.toFixed(3)}, Side B: ${b.toFixed(3)}, Hypotenuse C: ${c.toFixed(3)}\nAngle A: ${A.toFixed(3)}°, Angle B: ${B.toFixed(3)}°`;
+        result = `Side A: ${a.toFixed(3)}, Side B: ${b.toFixed(3)}, Hypotenuse C: ${c.toFixed(3)}\nAngle A: ${A.toFixed(3)}°`, Angle B: ${B.toFixed(3)}°;
       }
     } catch {
       result = "Error in calculation. Check your inputs.";
     }
 
     document.getElementById("triangle-result").textContent = result;
-  }
+  });
 
-  // ----------------------
-  // 3) CM ↔ PX Converter
-  // ----------------------
-  function convertUnits() {
+  // --- 3) CM ↔ PX Converter ---
+  document.getElementById("conv-btn")?.addEventListener("click", function() {
     const value = parseFloat(document.getElementById("conv-value").value);
     const mode = document.getElementById("conv-mode")?.value;
     const edgeComp = document.getElementById("edgeComp")?.checked;
@@ -234,12 +230,9 @@ function initcalc() {
     if (edgeComp) result *= 1.05;
 
     document.getElementById("converter-result").textContent = result.toFixed(3);
-  }
+  });
+
 }
 
-initcalc();
-
-
-
-
-
+// Initialize calculators
+initCalculators();
