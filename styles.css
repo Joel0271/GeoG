@@ -84,8 +84,16 @@ main {
   to { transform: rotate(360deg); }
 }
 
+
+#distance-result, #triangle-result, #converter-result {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #e74c3c;
+}
+
 .donut-tool .controls {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
 }
