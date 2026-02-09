@@ -239,17 +239,24 @@ function initCalculators() {
 
     let result;
     let resultplus;
+    let resultone;
     let nekoplus;
 
     if (mode === "cm2px") {
       result = (value / A4heightCm) * A4heightPx;
+      resultone = result * 1.01;
       resultplus = result * 1.05;
-      nekoplus = `Normal Size: ${result.toFixed(3)} px\n+5% Print: ${resultplus.toFixed(3)} px`
+      nekoplus = `Normal Size: ${result.toFixed(3)} px
+      +1% Print: ${resultone.toFixed(3)} px
+      +5% Print: ${resultplus.toFixed(3)} px`
     }
     else {
       result = ((value / A4heightPx) * A4heightCm) / 1.05;
+      resultone = result * 1.05 / 1.01;
       resultplus = result * 1.05;
-      nekoplus = `Normal Size: ${result.toFixed(3)} cm\n+5% Print: ${resultplus.toFixed(3)} cm`
+      nekoplus = `Normal Size: ${result.toFixed(3)} cm
+      +1% Print: ${resultone.toFixed(3)} px
+      +5% Print: ${resultplus.toFixed(3)} cm`
     }
     document.getElementById("converter-result").textContent = nekoplus;
   });
@@ -258,6 +265,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
