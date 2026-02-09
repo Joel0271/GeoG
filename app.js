@@ -21,8 +21,31 @@ function initDonutTool() {
   const tool = document.querySelector('#donut');
   if (!tool) return;
 
+  let colorCount = 3;
+  const minColors = 2;
+  const maxColors = 10;
+
   const donut = tool.querySelector('.donut-visual');
-  const colorCountInput = tool.querySelector('.color-count');
+  
+  const layerdis = document.getElementById("color-count-display");
+  const minusbtn = document.getElementById("color-minus");
+  const plusbtn = document.getElementById("color-plus");
+
+  minusbtn.addEventListener("click", () => {
+    if (colorCount > minColors) {
+      colorCount--;
+      layerdis.textContent = colorCount;
+      renderColorInputs();
+    }
+  });
+  plusbtn.addEventListener("click", () => {
+    if (colorCount < maxColors) {
+      colorCount++;
+      layerdis.textContent = colorCount;
+      renderColorInputs();
+    }
+  });
+
   const colorInputsDiv = tool.querySelector('.color-inputs');
   const toggleSpinButton = tool.querySelector('.toggle-spin');
 
@@ -38,14 +61,14 @@ function initDonutTool() {
   }
 
   function renderColorInputs() {
-    const count = parseInt(colorCountInput.value);
+    const layercount = colorCount;
     const existing = Array.from(
-      colorInputsDiv.querySelectorAll('input')
+      colorInputsDiv.querySelectorAll('input[type=color]')
     ).map(i => i.value);
 
     colorInputsDiv.innerHTML = '';
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < layercount; i++) {
       const input = document.createElement('input');
       input.type = 'color';
       input.value = existing[i] || '#33CCBB';
@@ -71,6 +94,7 @@ function initDonutTool() {
       const label = document.createElement('label');
       label.textContent = `Color ${i + 1}: `;
       label.appendChild(input);
+      label.appendChild(hexinput);
 
       colorInputsDiv.appendChild(label);
     }
@@ -82,8 +106,6 @@ function initDonutTool() {
     spinning = !spinning;
     donut.classList.toggle('spinning', spinning);
   });
-
-  colorCountInput.addEventListener('input', renderColorInputs);
 
   renderColorInputs();
 }
@@ -280,6 +302,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
