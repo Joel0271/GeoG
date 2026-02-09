@@ -48,14 +48,70 @@
         </div>
       </div>
     </section>
+    
     <section id="tool1" class="tool active">
       <h2>Tool One</h2>
       <p>Content for tool one.</p>
     </section>
 
-    <section id="tool2" class="tool">
-      <h2>Tool Two</h2>
-      <p>Content for tool two.</p>
+    <!-- Calculator Formulaes -->
+    <section id="distance-calculator">
+        <h2>1) Shortest Distance on Earth (Haversine)</h2>
+        <label>
+            Option:
+            <select id="coord-option">
+                <option value="separate">Separate Inputs (lat, lon)</option>
+                <option value="combined">Combined Input (lat,lon)</option>
+            </select>
+        </label>
+        <div id="separate-inputs">
+            <input type="number" id="lat1" placeholder="Latitude A" step="any">
+            <input type="number" id="lon1" placeholder="Longitude A" step="any">
+            <input type="number" id="lat2" placeholder="Latitude B" step="any">
+            <input type="number" id="lon2" placeholder="Longitude B" step="any">
+        </div>
+        <div id="combined-inputs" style="display:none;">
+            <input type="text" id="pointA" placeholder="A: lat,lon">
+            <input type="text" id="pointB" placeholder="B: lat,lon">
+        </div>
+        <button onclick="calculateDistance()">Calculate Distance (km)</button>
+        <p id="distance-result"></p>
+    </section>
+
+    <hr>
+
+    <!-- Section 2: Right-Angled Triangle Calculator -->
+    <section id="triangle-calculator">
+        <h2>2) Right-Angled Triangle Calculator</h2>
+        <p>Fill in two values (sides or side+angle), leave others blank:</p>
+        <input type="number" id="sideA" placeholder="Side A" step="any">
+        <input type="number" id="sideB" placeholder="Side B" step="any">
+        <input type="number" id="sideC" placeholder="Hypotenuse C" step="any">
+        <input type="number" id="angleA" placeholder="Angle A (deg)" step="any">
+        <input type="number" id="angleB" placeholder="Angle B (deg)" step="any">
+        <button onclick="calculateTriangle()">Calculate Triangle</button>
+        <p id="triangle-result"></p>
+    </section>
+
+    <hr>
+
+    <!-- Section 3: CM ↔ PX Converter -->
+    <section id="converter">
+        <h2>3) CM ↔ PX Converter for A4</h2>
+        <label>
+            <input type="checkbox" id="edgeComp"> Edge-to-edge compensation (+5%)
+        </label>
+        <br>
+        <label>
+            Mode:
+            <select id="conv-mode">
+                <option value="cm2px">CM → PX</option>
+                <option value="px2cm">PX → CM</option>
+            </select>
+        </label>
+        <input type="number" id="conv-value" placeholder="Value" step="any">
+        <button onclick="convertUnits()">Convert</button>
+        <p id="converter-result"></p>
     </section>
 
     <section id="tool3" class="tool">
