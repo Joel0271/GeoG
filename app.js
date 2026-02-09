@@ -32,7 +32,7 @@ function initDonutTool() {
     ).map(input => input.value);
 
     if (colors.length > 1) colors.push(colors[0]);
-    donut.style.background = conic-gradient(${colors.join(',')});
+    donut.style.background = `conic-gradient(${colors.join(',')})`;
   }
 
   function renderColorInputs() {
@@ -238,4 +238,5 @@ function convertUnits() {
 }
 
 initcalc();
+
 
