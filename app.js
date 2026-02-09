@@ -121,16 +121,17 @@ function initCalculators() {
       lat2 = parseFloat(document.getElementById("lat2").value);
       lon2 = parseFloat(document.getElementById("lon2").value);
     } else {
-      const a = document.getElementById("pointA").value.split(",");
-      const b = document.getElementById("pointB").value.split(",");
-      lat1 = parseFloat(a[0]);
-      lon1 = parseFloat(a[1]);
-      lat2 = parseFloat(b[0]);
-      lon2 = parseFloat(b[1]);
+      const parsePoint = (value) => {
+        const match = value.match(/-?\d+(\.\d+)?/g);
+        if (!match || match.length < 2) return [NaN, NaN];
+        return match.map(Number);
+      };
+      [lat1, lon1] = parsePoint(document.getElementById("pointA").value);
+      [lat2, lon2] = parsePoint(document.getElementById("pointB").value);
     }
 
     if ([lat1, lon1, lat2, lon2].some(isNaN)) {
-      document.getElementById("distance-result").textContent = "Enter valid coordinates.";
+      document.getElementById("distance-result").textContent = "Unknown coordinates detected";
       return;
     }
 
@@ -240,6 +241,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
