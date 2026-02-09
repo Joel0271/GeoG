@@ -41,7 +41,6 @@ function initDonutTool() {
   plusbtn.addEventListener("click", () => {
     if (colorCount < maxColors) {
       colorCount++;
-      layerdis.textContent = colorCount;
       renderColorInputs();
     }
   });
@@ -306,6 +305,7 @@ function initCalculators() {
 
 // Initialize calculators
 initCalculators();
+
 
 
 
