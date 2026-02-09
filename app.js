@@ -98,146 +98,147 @@ initDonutTool();
 
 function initcalc() {
   document.getElementById("coord-option")?.addEventListener("change", function() {
-  if (this.value === "separate") {
-    document.getElementById("separate-inputs").style.display = "block";
-    document.getElementById("combined-inputs").style.display = "none";
-  } else {
-    document.getElementById("separate-inputs").style.display = "none";
-    document.getElementById("combined-inputs").style.display = "block";
-  }
-});
-
-function calculateDistance() {
-  let lat1, lon1, lat2, lon2;
-  const option = document.getElementById("coord-option")?.value;
-
-  if (!option) return;
-
-  if (option === "separate") {
-    lat1 = parseFloat(document.getElementById("lat1").value);
-    lon1 = parseFloat(document.getElementById("lon1").value);
-    lat2 = parseFloat(document.getElementById("lat2").value);
-    lon2 = parseFloat(document.getElementById("lon2").value);
-  } else {
-    const a = document.getElementById("pointA").value.split(",");
-    const b = document.getElementById("pointB").value.split(",");
-    lat1 = parseFloat(a[0]);
-    lon1 = parseFloat(a[1]);
-    lat2 = parseFloat(b[0]);
-    lon2 = parseFloat(b[1]);
-  }
-
-  if ([lat1, lon1, lat2, lon2].some(isNaN)) {
-    document.getElementById("distance-result").textContent = "Enter valid coordinates.";
-    return;
-  }
-
-  const R = 6371; // km
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const aCalc = Math.sin(dLat/2)**2 +
-                Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
-  const c = 2 * Math.atan2(Math.sqrt(aCalc), Math.sqrt(1 - aCalc));
-  const distance = R * c;
-
-  document.getElementById("distance-result").textContent = distance.toFixed(3) + " km";
-}
-
-// ----------------------
-// 2) Right-Angled Triangle Calculator
-// ----------------------
-function calculateTriangle() {
-  let a = parseFloat(document.getElementById("sideA").value);
-  let b = parseFloat(document.getElementById("sideB").value);
-  let c = parseFloat(document.getElementById("sideC").value);
-  let A = parseFloat(document.getElementById("angleA").value);
-  let B = parseFloat(document.getElementById("angleB").value);
-
-  const deg2rad = deg => deg * Math.PI / 180;
-  const rad2deg = rad => rad * 180 / Math.PI;
-
-  const knownSides = [a, b, c].filter(v => !isNaN(v)).length;
-  const knownAngles = [A, B].filter(v => !isNaN(v)).length;
-
-  let result = "";
-
-  try {
-    // Two sides known → calculate third
-    if (knownSides >= 2) {
-      if (!a && b && c) a = Math.sqrt(c*c - b*b);
-      if (!b && a && c) b = Math.sqrt(c*c - a*a);
-      if (!c && a && b) c = Math.sqrt(a*a + b*b);
-    }
-
-    // One side + one angle → calculate the rest
-    if (knownSides === 1 && knownAngles === 1) {
-      if (!A && B) A = 90 - B;
-      if (!B && A) B = 90 - A;
-
-      if (a && A) {
-        b = a / Math.tan(deg2rad(A));
-        c = a / Math.sin(deg2rad(A));
-      } else if (b && B) {
-        a = b / Math.tan(deg2rad(B));
-        c = b / Math.sin(deg2rad(B));
-      } else if (a && B) {
-        b = a * Math.tan(deg2rad(B));
-        c = a / Math.cos(deg2rad(B));
-      } else if (b && A) {
-        a = b * Math.tan(deg2rad(A));
-        c = b / Math.cos(deg2rad(A));
-      } else if (c && A) {
-        a = c * Math.sin(deg2rad(A));
-        b = c * Math.cos(deg2rad(A));
-      } else if (c && B) {
-        b = c * Math.sin(deg2rad(B));
-        a = c * Math.cos(deg2rad(B));
-      }
-    }
-
-    // Calculate missing angles
-    if (!A && a && c) A = rad2deg(Math.asin(a / c));
-    if (!B && b && c) B = rad2deg(Math.asin(b / c));
-
-    if ([a,b,c,A,B].some(v => isNaN(v))) {
-      result = "Insufficient or inconsistent input. Provide at least two known values.";
+    if (this.value === "separate") {
+      document.getElementById("separate-inputs").style.display = "block";
+      document.getElementById("combined-inputs").style.display = "none";
     } else {
-      result = `Side A: ${a.toFixed(3)}, Side B: ${b.toFixed(3)}, Hypotenuse C: ${c.toFixed(3)}\nAngle A: ${A.toFixed(3)}°, Angle B: ${B.toFixed(3)}°`;
+      document.getElementById("separate-inputs").style.display = "none";
+      document.getElementById("combined-inputs").style.display = "block";
     }
-  } catch {
-    result = "Error in calculation. Check your inputs.";
+  });
+
+  function calculateDistance() {
+    let lat1, lon1, lat2, lon2;
+    const option = document.getElementById("coord-option")?.value;
+
+    if (!option) return;
+
+    if (option === "separate") {
+      lat1 = parseFloat(document.getElementById("lat1").value);
+      lon1 = parseFloat(document.getElementById("lon1").value);
+      lat2 = parseFloat(document.getElementById("lat2").value);
+      lon2 = parseFloat(document.getElementById("lon2").value);
+    } else {
+      const a = document.getElementById("pointA").value.split(",");
+      const b = document.getElementById("pointB").value.split(",");
+      lat1 = parseFloat(a[0]);
+      lon1 = parseFloat(a[1]);
+      lat2 = parseFloat(b[0]);
+      lon2 = parseFloat(b[1]);
+     }
+
+    if ([lat1, lon1, lat2, lon2].some(isNaN)) {
+      document.getElementById("distance-result").textContent = "Enter valid coordinates.";
+      return;
+    } 
+
+    const R = 6371; // km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const aCalc = Math.sin(dLat/2)**2 +
+                  Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
+    const c = 2 * Math.atan2(Math.sqrt(aCalc), Math.sqrt(1 - aCalc));
+    const distance = R * c;
+
+    document.getElementById("distance-result").textContent = distance.toFixed(3) + " km";
   }
 
-  document.getElementById("triangle-result").textContent = result;
-}
+  // ----------------------
+  // 2) Right-Angled Triangle Calculator
+  // ----------------------
+  function calculateTriangle() {
+    let a = parseFloat(document.getElementById("sideA").value);
+    let b = parseFloat(document.getElementById("sideB").value);
+    let c = parseFloat(document.getElementById("sideC").value);
+    let A = parseFloat(document.getElementById("angleA").value);
+    let B = parseFloat(document.getElementById("angleB").value);
 
-// ----------------------
-// 3) CM ↔ PX Converter
-// ----------------------
-function convertUnits() {
-  const value = parseFloat(document.getElementById("conv-value").value);
-  const mode = document.getElementById("conv-mode")?.value;
-  const edgeComp = document.getElementById("edgeComp")?.checked;
-  const A4heightPx = 3508;
-  const A4heightCm = 29.7;
+    const deg2rad = deg => deg * Math.PI / 180;
+    const rad2deg = rad => rad * 180 / Math.PI;
 
-  if (isNaN(value)) {
-    document.getElementById("converter-result").textContent = "Enter a valid number.";
-    return;
+    const knownSides = [a, b, c].filter(v => !isNaN(v)).length;
+    const knownAngles = [A, B].filter(v => !isNaN(v)).length;
+
+    let result = "";
+
+    try {
+      // Two sides known → calculate third
+      if (knownSides >= 2) {
+        if (!a && b && c) a = Math.sqrt(c*c - b*b);
+        if (!b && a && c) b = Math.sqrt(c*c - a*a);
+        if (!c && a && b) c = Math.sqrt(a*a + b*b);
+      }
+
+      // One side + one angle → calculate the rest
+      if (knownSides === 1 && knownAngles === 1) {
+        if (!A && B) A = 90 - B;
+        if (!B && A) B = 90 - A;
+
+        if (a && A) {
+          b = a / Math.tan(deg2rad(A));
+          c = a / Math.sin(deg2rad(A));
+        } else if (b && B) {
+          a = b / Math.tan(deg2rad(B));
+          c = b / Math.sin(deg2rad(B));
+        } else if (a && B) {
+          b = a * Math.tan(deg2rad(B));
+          c = a / Math.cos(deg2rad(B));
+        } else if (b && A) {
+          a = b * Math.tan(deg2rad(A));
+          c = b / Math.cos(deg2rad(A));
+        } else if (c && A) {
+          a = c * Math.sin(deg2rad(A));
+          b = c * Math.cos(deg2rad(A));
+        } else if (c && B) {
+          b = c * Math.sin(deg2rad(B));
+          a = c * Math.cos(deg2rad(B));
+        }
+     }
+
+     // Calculate missing angles
+      if (!A && a && c) A = rad2deg(Math.asin(a / c));
+      if (!B && b && c) B = rad2deg(Math.asin(b / c));
+
+      if ([a,b,c,A,B].some(v => isNaN(v))) {
+        result = "Insufficient or inconsistent input. Provide at least two known values.";
+      } else {
+        result = `Side A: ${a.toFixed(3)}, Side B: ${b.toFixed(3)}, Hypotenuse C: ${c.toFixed(3)}\nAngle A: ${A.toFixed(3)}°, Angle B: ${B.toFixed(3)}°`;
+      }
+    } catch {
+      result = "Error in calculation. Check your inputs.";
+    }
+
+    document.getElementById("triangle-result").textContent = result;
   }
 
-  let result;
+  // ----------------------
+  // 3) CM ↔ PX Converter
+  // ----------------------
+  function convertUnits() {
+    const value = parseFloat(document.getElementById("conv-value").value);
+    const mode = document.getElementById("conv-mode")?.value;
+    const edgeComp = document.getElementById("edgeComp")?.checked;
+    const A4heightPx = 3508;
+    const A4heightCm = 29.7;
 
-  if (mode === "cm2px") result = (value / A4heightCm) * A4heightPx;
-  else result = (value / A4heightPx) * A4heightCm;
+    if (isNaN(value)) {
+      document.getElementById("converter-result").textContent = "Enter a valid number.";
+      return;
+    }
 
-  if (edgeComp) result *= 1.05;
+    let result;
 
-  document.getElementById("converter-result").textContent = result.toFixed(3);
-}
+    if (mode === "cm2px") result = (value / A4heightCm) * A4heightPx;
+    else result = (value / A4heightPx) * A4heightCm;
+
+    if (edgeComp) result *= 1.05;
+
+    document.getElementById("converter-result").textContent = result.toFixed(3);
+  }
 }
 
 initcalc();
+
 
 
 
