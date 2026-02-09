@@ -202,7 +202,7 @@ function calculateTriangle() {
     if ([a,b,c,A,B].some(v => isNaN(v))) {
       result = "Insufficient or inconsistent input. Provide at least two known values.";
     } else {
-      result = Side A: ${a.toFixed(3)}, Side B: ${b.toFixed(3)}, Hypotenuse C: ${c.toFixed(3)}\nAngle A: ${A.toFixed(3)}°, Angle B: ${B.toFixed(3)}°;
+      result = `Side A: ${a.toFixed(3)}, Side B: ${b.toFixed(3)}, Hypotenuse C: ${c.toFixed(3)}\nAngle A: ${A.toFixed(3)}°, Angle B: ${B.toFixed(3)}°`;
     }
   } catch {
     result = "Error in calculation. Check your inputs.";
@@ -238,5 +238,6 @@ function convertUnits() {
 }
 
 initcalc();
+
 
 
