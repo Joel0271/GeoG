@@ -122,17 +122,18 @@
   <p>Select an image, choose a size, and download the resized version.</p>
 
   <div class="image-resizer">
+
     <!-- Image Selection -->
     <div class="image-upload-box">
       <input type="file" id="imageInput" accept="image/*" hidden>
 
       <label for="imageInput" class="upload-label">
-        <span>Select Image</span>
+        Select Image
       </label>
     </div>
 
     <!-- Image Information -->
-    <div id="imageInfo" class="image-info" style="display: none;">
+    <div id="imageInfo" class="image-info">
       <p>
         <strong>Name:</strong>
         <span id="imageName"></span>
@@ -144,23 +145,35 @@
       </p>
     </div>
 
-    <!-- Resize Buttons -->
-    <div id="resizeOptions" class="resize-options" style="display: none;">
-      <button type="button" class="resize-btn" data-size="16">16x16</button>
-      <button type="button" class="resize-btn" data-size="32">32x32</button>
-      <button type="button" class="resize-btn" data-size="64">64x64</button>
-      <button type="button" class="resize-btn" data-size="128">128x128</button>
+    <!-- Resize Options -->
+    <div id="resizeOptions" class="resize-options">
+      <button type="button" class="resize-btn" data-size="16">
+        16x16
+      </button>
+
+      <button type="button" class="resize-btn" data-size="32">
+        32x32
+      </button>
+
+      <button type="button" class="resize-btn" data-size="64">
+        64x64
+      </button>
+
+      <button type="button" class="resize-btn" data-size="128">
+        128x128
+      </button>
     </div>
 
-    <!-- Download Button -->
-    <div id="downloadContainer" style="display: none;">
-      <a id="downloadButton" class="download-btn" download>
+    <!-- Download -->
+    <div id="downloadContainer">
+      <a id="downloadButton" class="download-btn">
         Download Resized Image
       </a>
     </div>
 
-    <!-- Hidden canvas used for resizing -->
-    <canvas id="resizeCanvas" style="display: none;"></canvas>
+    <!-- Canvas used internally for resizing -->
+    <canvas id="resizeCanvas"></canvas>
+
   </div>
 </section>
 
