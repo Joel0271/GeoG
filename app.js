@@ -307,6 +307,137 @@ function initCalculators() {
 initCalculators();
 
 
+// ==========================================
+// IMAGE RESIZER
+// ==========================================
+
+const imageInput = document.getElementById("imageInput");
+const imageInfo = document.getElementById("imageInfo");
+const imageName = document.getElementById("imageName");
+const imageResolution = document.getElementById("imageResolution");
+const resizeOptions = document.getElementById("resizeOptions");
+const resizeButtons = document.querySelectorAll(".resize-btn");
+const downloadContainer = document.getElementById("downloadContainer");
+const downloadButton = document.getElementById("downloadButton");
+const canvas = document.getElementById("resizeCanvas");
+
+let selectedImage = null;
+let selectedFile = null;
+
+
+// ------------------------------------------
+// Select Image
+// ------------------------------------------
+
+imageInput.addEventListener("change", function () {
+
+  const file = this.files[0];
+
+  if (!file) {
+    return;
+  }
+
+  // Check that the file is an image
+  if (!file.type.startsWith("image/")) {
+    alert("Please select an image file.");
+    return;
+  }
+
+  selectedFile = file;
+
+  const image = new Image();
+  const imageURL = URL.createObjectURL(file);
+
+  image.onload = function () {
+
+    selectedImage = image;
+
+    // Display image information
+    imageName.textContent = file.name;
+
+    imageResolution.textContent =
+      `${image.naturalWidth} x ${image.naturalHeight} pixels`;
+
+    // Show the resize controls
+    imageInfo.classList.add("visible");
+    resizeOptions.classList.add("visible");
+
+    // Hide previous download button
+    downloadContainer.classList.remove("visible");
+
+    URL.revokeObjectURL(imageURL);
+  };
+
+  image.onerror = function () {
+
+    alert("Unable to load this image.");
+
+    URL.revokeObjectURL(imageURL);
+  };
+
+  image.src = imageURL;
+});
+
+
+// ------------------------------------------
+// Resize Image
+// ------------------------------------------
+
+resizeButtons.forEach(function (button) {
+
+  button.addEventListener("click", function () {
+
+    if (!selectedImage) {
+      alert("Please select an image first.");
+      return;
+    }
+
+    const size = parseInt(this.dataset.size, 10);
+
+    // Set canvas dimensions
+    canvas.width = size;
+    canvas.height = size;
+
+    const context = canvas.getContext("2d");
+
+    // Clear canvas
+    context.clearRect(0, 0, size, size);
+
+    // Draw resized image
+    context.drawImage(
+      selectedImage,
+      0,
+      0,
+      size,
+      size
+    );
+
+    // Convert canvas to PNG
+    canvas.toBlob(function (blob) {
+
+      if (!blob) {
+        alert("Unable to resize the image.");
+        return;
+      }
+
+      // Create download URL
+      const downloadURL = URL.createObjectURL(blob);
+
+      downloadButton.href = downloadURL;
+
+      downloadButton.download =
+        `resized-${size}x${size}.png`;
+
+      // Show download button
+      downloadContainer.classList.add("visible");
+
+    }, "image/png");
+
+  });
+
+});
+
+
 
 
 
