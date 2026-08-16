@@ -148,6 +148,154 @@ main {
 
 }
 
+/* ==========================================
+   IMAGE RESIZER
+   ========================================== */
+
+.image-resizer {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+
+/* ------------------------------------------
+   Image Upload
+   ------------------------------------------ */
+
+.image-upload-box {
+  margin: 20px 0;
+}
+
+.upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 120px;
+
+  border: 2px dashed #aaa;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.upload-label:hover {
+  border-color: #555;
+  background-color: #f5f5f5;
+}
+
+
+/* ------------------------------------------
+   Image Information
+   ------------------------------------------ */
+
+.image-info {
+  display: none;
+
+  padding: 15px;
+  margin: 15px 0;
+
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+.image-info.visible {
+  display: block;
+}
+
+.image-info p {
+  margin: 8px 0;
+  word-break: break-word;
+}
+
+
+/* ------------------------------------------
+   Resize Buttons
+   ------------------------------------------ */
+
+.resize-options {
+  display: none;
+
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin: 20px 0;
+}
+
+.resize-options.visible {
+  display: flex;
+}
+
+.resize-btn {
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: #333;
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition: 0.2s ease;
+}
+
+.resize-btn:hover {
+  background-color: #555;
+}
+
+.resize-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* ------------------------------------------
+   Download Button
+   ------------------------------------------ */
+
+#downloadContainer {
+  display: none;
+  margin-top: 20px;
+}
+
+#downloadContainer.visible {
+  display: block;
+}
+
+.download-btn {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  border-radius: 6px;
+
+  background-color: #28a745;
+  color: white;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #218838;
+}
+
+
+/* ------------------------------------------
+   Hidden Canvas
+   ------------------------------------------ */
+
+#resizeCanvas {
+  display: none;
+}
+
 
 
 
