@@ -273,7 +273,7 @@ main {
 
   border-radius: 6px;
 
-  background-color: #28a745;
+  background-color: #00ffff; /* green is 28a745 */
   color: white;
 
   text-decoration: none;
