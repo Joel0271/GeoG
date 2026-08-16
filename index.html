@@ -17,14 +17,14 @@
     <nav class="tool-nav">
       <button data-tool="donut">Donut color picker</button>
       <button data-tool="calc">Formulaes</button>
-      <button data-tool="tool1">Tool One</button>
-      <button data-tool="tool2">Tool Two</button>
-      <button data-tool="tool3">Tool Three</button>
+      <button data-tool="img_resize">Image Resizer</button>
+      <button data-tool="tool4">Tool four</button>
+      <button data-tool="tool5">Tool five</button>
     </nav>
   </header>
 
   <main>
-    <!-- DONUT TOOL -->
+    <!-- PAGE ONE: DONUT TOOL -->
     <section id="donut" class="tool">
       <h2>Live Preview Donut</h2>
 
@@ -53,15 +53,10 @@
 
     </section>
 
-    <!-- TOOL ONE -->
-    <section id="tool1" class="tool active">
-      <h2>Tool One</h2>
-      <p>Content for tool one.</p>
-    </section>
 
-    <!-- TOOL TWO: ALL CALCULATORS -->
+<!-- PAGE TWO: FORMULAES -->
     <section id="calc" class="tool">
-      <h2>Tool Two: Calculators</h2>
+      <h2>Custom Formulaes</h2>
 
       <!-- 1) Haversine Distance -->
       <section id="distance-calculator">
@@ -119,11 +114,66 @@
         <p id="converter-result"></p>
       </section>
     </section>
+    
 
-    <!-- TOOL THREE -->
-    <section id="tool3" class="tool">
-      <h2>Tool Three</h2>
-      <p>Content for tool three.</p>
+    <!-- PAGE THREE: IMAGE RESIZER -->
+<section id="img_resizer" class="tool">
+  <h2>Image Resizer</h2>
+  <p>Select an image, choose a size, and download the resized version.</p>
+
+  <div class="image-resizer">
+    <!-- Image Selection -->
+    <div class="image-upload-box">
+      <input type="file" id="imageInput" accept="image/*" hidden>
+
+      <label for="imageInput" class="upload-label">
+        <span>Select Image</span>
+      </label>
+    </div>
+
+    <!-- Image Information -->
+    <div id="imageInfo" class="image-info" style="display: none;">
+      <p>
+        <strong>Name:</strong>
+        <span id="imageName"></span>
+      </p>
+
+      <p>
+        <strong>Resolution:</strong>
+        <span id="imageResolution"></span>
+      </p>
+    </div>
+
+    <!-- Resize Buttons -->
+    <div id="resizeOptions" class="resize-options" style="display: none;">
+      <button type="button" class="resize-btn" data-size="16">16x16</button>
+      <button type="button" class="resize-btn" data-size="32">32x32</button>
+      <button type="button" class="resize-btn" data-size="64">64x64</button>
+      <button type="button" class="resize-btn" data-size="128">128x128</button>
+    </div>
+
+    <!-- Download Button -->
+    <div id="downloadContainer" style="display: none;">
+      <a id="downloadButton" class="download-btn" download>
+        Download Resized Image
+      </a>
+    </div>
+
+    <!-- Hidden canvas used for resizing -->
+    <canvas id="resizeCanvas" style="display: none;"></canvas>
+  </div>
+</section>
+
+    <!-- PAGE FOUR: EMPTY -->
+    <section id="tool4" class="tool">
+      <h2>Tool Four</h2>
+      <p>Content goes there</p>
+    </section>
+
+    <!-- PAGE FIVE: EMPTY -->
+    <section id="tool5" class="tool">
+      <h2>Tool Five</h2>
+      <p>Content goes there</p>
     </section>
   </main>
 
