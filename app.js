@@ -313,6 +313,7 @@ initCalculators();
 
 function initImgResizers() {
 
+const imagePreview = document.getElementById("imagePreview");
 const imageInput = document.getElementById("imageInput");
 const imageInfo = document.getElementById("imageInfo");
 const imageName = document.getElementById("imageName");
@@ -355,6 +356,9 @@ imageInput.addEventListener("change", function () {
     selectedImage = image;
 
     // Display image information
+
+    imagePreview.src = imageURL;
+    
     imageName.textContent = file.name;
 
     imageResolution.textContent =
@@ -366,8 +370,6 @@ imageInput.addEventListener("change", function () {
 
     // Hide previous download button
     downloadContainer.classList.remove("visible");
-
-    URL.revokeObjectURL(imageURL);
   };
 
   image.onerror = function () {
