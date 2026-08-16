@@ -311,6 +311,8 @@ initCalculators();
 // IMAGE RESIZER
 // ==========================================
 
+function initImgResizers() {
+
 const imageInput = document.getElementById("imageInput");
 const imageInfo = document.getElementById("imageInfo");
 const imageName = document.getElementById("imageName");
@@ -436,6 +438,9 @@ resizeButtons.forEach(function (button) {
   });
 
 });
+}
+
+initImgResizers();
 
 
 
